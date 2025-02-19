@@ -6,6 +6,7 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    flex-direction: column; /* Stacks elements vertically */
 }
 
 .container {
@@ -16,6 +17,8 @@ body {
     width: 350px;
     text-align: center;
     animation: fadeIn 1s ease-in-out;
+    position: relative;  /* Add relative positioning */
+    z-index: 10;  /* Ensure it's above other elements */
 }
 
 h2 {
@@ -34,6 +37,7 @@ img {
     border: 5px solid yellow;
     box-shadow: 0 0 20px 5px black;
 }
+
 /* Left and Right Images Styling */
 .left-image, .right-image {
     position: absolute;
@@ -41,7 +45,7 @@ img {
     bottom: 0;
     width: 25%;
     height: 100%;
-    z-index: 5;
+    z-index: 1;  /* Lower z-index so they stay behind the container */
 }
 
 .left-image img, .right-image img {
@@ -57,7 +61,7 @@ img {
 .right-image {
     right: 0;
 }
-    
+
 form {
     display: flex;
     flex-direction: column;
@@ -110,5 +114,48 @@ button:hover {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .container {
+        width: 90%; /* Make container width responsive */
+        padding: 15px;
+    }
+
+    .left-image, .right-image {
+        width: 50%;  /* Make the side images cover half the screen */
+    }
+
+    h2 {
+        font-size: 22px; /* Adjust heading font size */
+    }
+
+    .image-container {
+        margin-top: 20px;
+    }
+}
+
+/* Extra small screen (mobile) responsiveness */
+@media (max-width: 480px) {
+    body {
+        flex-direction: column;  /* Stack elements vertically */
+    }
+
+    .left-image, .right-image {
+        width: 0;  /* Hide the side images on very small screens */
+    }
+
+    .container {
+        width: 95%;  /* Further reduce container width on small screens */
+    }
+
+    h2 {
+        font-size: 20px;  /* Smaller font size on very small screens */
+    }
+
+    img {
+        max-width: 90%; /* Adjust image size */
     }
 }
